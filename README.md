@@ -1,13 +1,36 @@
 # py-flask-graphql-autogen
 
-A tool that automatically generates GraphQL Server along with GraphQL types, resolvers and SQLAlchemy models for database tables!
+A tool that __automatically generates deploy ready GraphQL Server__ based on database table metadata. 
 
-- Supports all sensible search criteria on database columns
-- Supports search on multiple columns
-- Uses [jinja2](https://jinja.palletsprojects.com/en/2.10.x/) template engine for code generation
-- Database engine can be plugged in post code generation in an isolated code file that __does not__ touch auto generated code 
+## Why?
+The motivation for this tool is two-fold:
+1. Building API end points for simple database models is a chore. This tool will automate the whole process.
+2. If you have a data warehouse (DWH) which you want to expose to external systems, this tool will come in handy. 
 
-## Features
+## Salient Features
+- Supports all sensible search criteria on database columns based on field types
+- Supports search on a combination of columns
+- Ability to plug in database connection parameters without disturbing auto-generated code 
+- Uses [jinja2](https://jinja.palletsprojects.com/en/2.10.x/) template engine for [PEP8](https://www.python.org/dev/peps/pep-0008/) compliant code generation.
 
-- v1.0
-    - Query resolvers with sensible search criteria for fields based on field types
+## Releases
+
+### v1.0
+- Query resolvers with sensible search criteria for fields based on field types
+    - __String__:
+        1. ilike search (i.e. case insensitive like search)
+        2. starts with, ends with search
+        3. in list search
+        4. equals, not equals search
+    - __Numeric__:
+        1. greater than, less than
+        2. between
+        3. equals, not equals
+    - __Date__:
+        1. greater than, less than
+        2. between
+        3. equals, not equals        
+
+### Immediate Road map
+- Provision for authentication and authorization
+- Provision for caching
