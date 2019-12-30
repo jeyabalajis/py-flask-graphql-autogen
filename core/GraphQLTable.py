@@ -29,6 +29,8 @@ class GraphQLTable:
 
     def __populate_graph_ql_structs(self):
         self.db_model_name = to_camel_case(self.table_name, init_caps=True)
+        self.graph_ql_model_name = self.db_model_name + "Model"
+        self.graph_ql_query_alias = self.db_model_name.lower() + "s"
 
     @staticmethod
     def from_json(json_data):

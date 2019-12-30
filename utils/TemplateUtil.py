@@ -27,4 +27,4 @@ class TemplateUtil:
         except OSError as e:
             print("Install black for auto formatting" + e.strerror)
         finally:
-            os.close(0)
+            pass

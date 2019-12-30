@@ -3,11 +3,11 @@ import shutil
 from distutils.dir_util import copy_tree
 
 
-def __get_fq_path(file_path: str, file_name: str) -> str:
+def __get_fq_path(file_path: str, file_name: str = None) -> str:
     """
     join path with a file name
     """
-    return file_path + "/" + file_name
+    return file_path + "/" + file_name if file_name else file_path
 
 
 def write_to_file(file_path: str, file_name: str, file_content: str):
@@ -28,6 +28,7 @@ def copy_file(file_path: str, file_name: str, out_path: str, out_file_name: str 
     """
     copy file from one folder to another
     """
+    os.makedirs(os.path.dirname(__get_fq_path(out_path, out_file_name)), exist_ok=True)
     destination = out_path + "/" + out_file_name if out_file_name else out_path
     shutil.copy(__get_fq_path(file_path, file_name), out_path)
 
