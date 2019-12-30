@@ -2,6 +2,8 @@ from utils.TemplateUtil import TemplateUtil
 from core.GraphQLTable import GraphQLTable
 from core.GraphQLColumn import GraphQLColumn
 from core.GraphQLForeignKey import GraphQLForeignKey
+from setup.config import DB_MODELS_FOLDER
+from os import path
 
 
 class TestTemplateUtil:
@@ -52,10 +54,6 @@ class TestTemplateUtil:
             "tables": tables
         }
 
-        template_util = TemplateUtil("models", "models.tl", data)
-
-        template_util.render_template_to_file("out", "models.py")
-
-
-my_test = TestTemplateUtil()
-my_test.test_render_template()
+        template_util = TemplateUtil("database", "models.tl", data)
+        template_util.render_template_to_file("out/" + DB_MODELS_FOLDER, "models.tl".replace(".tl", ".py"))
+        assert path.exists("out/" + DB_MODELS_FOLDER + "/" + "models.py")
