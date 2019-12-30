@@ -1,4 +1,4 @@
-from utils.template_util import render_template
+from utils.TemplateUtil import TemplateUtil
 from core.GraphQLTable import GraphQLTable
 from core.GraphQLColumn import GraphQLColumn
 from core.GraphQLForeignKey import GraphQLForeignKey
@@ -52,9 +52,9 @@ class TestTemplateUtil:
             "tables": tables
         }
 
-        output = render_template("models", "models.tl", data)
-        print(output)
-        assert output.find("PrimaryKeyConstraint") is not None
+        template_util = TemplateUtil("models", "models.tl", data)
+
+        template_util.render_template_to_file("out", "models.py")
 
 
 my_test = TestTemplateUtil()

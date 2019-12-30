@@ -15,9 +15,9 @@ Base = declarative_base()
 # We will need this for querying
 Base.query = db_session.query_property()
 
+
+
 {%- for table in data.tables %}
-
-
 
 class {{table.db_model_name}}(Base):
     __tablename__ = '{{table.table_name}}'
@@ -50,4 +50,5 @@ class {{table.db_model_name}}(Base):
         {},
     )
     {% endif %}
+
 {% endfor %}
