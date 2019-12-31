@@ -23,9 +23,10 @@ DB_FIELD_TYPE_MAP = {
     "datetime": "DateTime"
 }
 
+
 COLUMN_QUERY_TYPES_MAP = {
     "str": [
-        {"q_type": "in", "gql_type": "graphene.List"},
+        {"q_type": "in", "gql_type": "graphene.List(graphene.String)"},
         {"q_type": "like", "gql_type": "graphene.String()"},
         {"q_type": "eq", "gql_type": "graphene.String()"},
         {"q_type": "neq", "gql_type": "graphene.String()"}
@@ -37,16 +38,15 @@ COLUMN_QUERY_TYPES_MAP = {
         {"q_type": "lt", "gql_type": "graphene.Int()"},
     ],
     "date": [
-        {"q_type": "gte", "gql_type": "graphene.String()"},
-        {"q_type": "lte", "gql_type": "graphene.String()"},
-        {"q_type": "gt", "gql_type": "graphene.String()"},
-        {"q_type": "lt", "gql_type": "graphene.String()"},
+        {"q_type": "gte", "gql_type": "graphene.Date()"},
+        {"q_type": "lte", "gql_type": "graphene.Date()"},
+        {"q_type": "gt", "gql_type": "graphene.Date()"},
+        {"q_type": "lt", "gql_type": "graphene.Date()"},
     ],
     "datetime": [
-        {"q_type": "gte", "gql_type": "graphene.String()"},
-        {"q_type": "lte", "gql_type": "graphene.String()"},
-        {"q_type": "gt", "gql_type": "graphene.String()"},
-        {"q_type": "lt", "gql_type": "graphene.String()"},
+        {"q_type": "gte", "gql_type": "graphene.DateTime()"},
+        {"q_type": "lte", "gql_type": "graphene.DateTime()"},
+        {"q_type": "gt", "gql_type": "graphene.DateTime()"},
+        {"q_type": "lt", "gql_type": "graphene.DateTime()"},
     ]
 }
-
