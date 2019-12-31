@@ -2,7 +2,7 @@ from utils.TemplateUtil import TemplateUtil
 from core.GraphQLTable import GraphQLTable
 from core.GraphQLColumn import GraphQLColumn
 from core.GraphQLForeignKey import GraphQLForeignKey
-from setup.config import DB_MODELS_FOLDER, GRAPHQL_SCHEMA_FOLDER
+from static.config import DB_MODELS_FOLDER, GRAPHQL_SCHEMA_FOLDER
 from os import path
 
 
@@ -28,7 +28,7 @@ class TestTemplateUtil:
             {"field_type": "int", "field_name": "id"},
             {"field_type": "str", "field_name": "name"},
             {"field_type": "datetime", "field_name": "hired_on"},
-            {"field_type": "int", "field_name": "department_id"}
+            {"field_type": "int", "field_name": "department_id", "exclude_from_search": True}
         ]
 
         _graph_ql_columns = [GraphQLColumn(**col) for col in _col_data]
@@ -48,6 +48,7 @@ class TestTemplateUtil:
         }
         _graph_ql_table = GraphQLTable(**_table_data)
 
+        print(_graph_ql_table.__dict__)
         tables.append(_graph_ql_table.__dict__)
 
         data = {

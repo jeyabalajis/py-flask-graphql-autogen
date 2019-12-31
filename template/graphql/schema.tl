@@ -37,15 +37,37 @@ class Query(ObjectType):
         return {{table.graph_ql_query_alias}}
     {% endfor %}
 
-    find_employee_by_name = graphene.List(lambda: Employee, name=graphene.String())
+    {%- for table in data.tables %}
+    {# Generate multi - field search query parameters #}
+    query_params_dict = dict()
+    {% for col in table.columnDicts -%}
+    {%- if (col.query_types is not none and col.query_types is iterable) %}
+    {% for query_type in col.query_types -%}
+    query_params_dict['{{col.db_model_name}}_{{query_type.q_type}}'] = {{query_type.gql_type}}
+    {% endfor %} {# end of query types loop #}
+    {% endif %} {# end of query_types iterable condition #}
+    {% endfor %} {# end of columns loop #}
 
-    def resolve_find_employee_by_name(self, info, **args):
-        name = args.get("name")
-        employee_query = Employee.get_query(info)
+    query_params_dict['limit'] = graphene.Int()
+    search_{{table.graph_ql_query_alias}} = graphene.List(lambda: {{table.db_model_name}}, **query_params_dict)
 
-        employees = employee_query.filter(EmployeeModel.name.contains(name)).all()
+    def resolve_search_{{table.graph_ql_query_alias}}(self, info, **args):
+        {% for col in table.columnDicts -%}
+        {%- if (col.query_types is not none and col.query_types is iterable) %}
+        {% for query_type in col.query_types -%}
+        {{col.db_model_name}}_{{query_type.q_type}} = args.get("{{col.db_model_name}}_{{query_type.q_type}}")
+        {% endfor %} {# end of query types loop #}
+        {% endif %} {# end of query_types iterable condition #}
+        {% endfor %} {# end of columns loop #}
 
-        return employees
+        limit = args.get("limit")
 
+        {{table.db_model_name.lower()}}_query = {{table.db_model_name}}.get_query(info)
+
+        {{table.graph_ql_query_alias}} = {{table.db_model_name.lower()}}_query.filter(TBD).limit(limit)
+
+        return {{table.graph_ql_query_alias}}
+
+    {% endfor %} {# end of tables loop #}
 
 schema = graphene.Schema(query=Query)

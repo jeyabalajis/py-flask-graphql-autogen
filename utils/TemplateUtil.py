@@ -1,8 +1,9 @@
-from jinja2 import Environment, FileSystemLoader
-from setup.config import TEMPLATE_FOLDER
-from utils.file_util import write_to_file
-import black
 import os
+
+from jinja2 import Environment, FileSystemLoader
+
+from static.config import TEMPLATE_FOLDER
+from utils.file_util import write_to_file
 
 
 class TemplateUtil:
