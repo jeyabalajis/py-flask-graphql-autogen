@@ -33,23 +33,22 @@ class GraphQLTable:
         self.graph_ql_query_alias = self.db_model_name.lower() + "s"
 
     @staticmethod
-    def from_json(json_data):
+    def from_json(json_data: dict):
+        """
+        public static factory method that returns an instance of GraphQLTable given a metadata JSON
+        """
         assert "table_name" in json_data
         assert "columns" in json_data and isinstance(json_data["columns"], list)
 
         _graph_ql_columns = [GraphQLColumn(**col) for col in json_data["columns"]]
 
-        _table_data = {"table_name": json_data["table_name"], "columns": _graph_ql_columns}
+        _table_data = {
+            "table_name": json_data["table_name"],
+            "columns": _graph_ql_columns,
+            "primary_key_fields": json_data["primary_key_fields"]
+        }
+
+        if "foreign_key" in json_data and isinstance(json_data["foreign_key"], dict):
+            _table_data["foreign_key"] = GraphQLForeignKey(**json_data["foreign_key"])
+
         return GraphQLTable(**_table_data)
-
-    def process_db_models(self):
-        pass
-
-
-class GraphQLTblSqlAlchemy(GraphQLTable):
-    """
-    SqlAlchemy flavor of GraphQL Table. Used to generate SQL Alchemy models
-    """
-
-    def generate_dao_models(self):
-        pass

@@ -1,19 +1,19 @@
 TEMPLATE_FOLDER = "template"
 
 DB_MODELS_FOLDER = "database"
-
-GRAPHQL_SCHEMA_FOLDER = "graphql"
+GRAPHQL_SCHEMA_FOLDER = "schema"
+GRAPHQL_SERVER_FOLDER = "."
 
 FILE_TYPES_MAP = {".tl": ".py"}
 
 BLIND_COPY_FILES = [
-    "database/__init__.py",
-    "graphql/__init__.py",
-    "requirements.txt"
+    {"source_path": "template/database", "source_file": "__init__.py", "target": "{}/database"},
+    {"source_path": "template/schema", "source_file": "__init__.py", "target":"{}/schema"},
+    {"source_path": "template", "source_file": "requirements.txt", "target": "{}"}
 ]
 
 BLIND_COPY_FOLDERS = [
-    "db_utils"
+    {"source": "template/db_utils", "target": "{}/db_utils"}
 ]
 
 DB_FIELD_TYPE_MAP = {

@@ -24,7 +24,7 @@ class TemplateUtil:
         output = self.render_template()
         write_to_file(out_file_path, out_file_name, output)
         try:
-            os.system('black ' + './' + out_file_path + "/" + out_file_name)
+            os.system('black ' + out_file_path + "/" + out_file_name)
         except OSError as e:
             print("Install black for auto formatting" + e.strerror)
         finally:

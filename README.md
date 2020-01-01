@@ -5,7 +5,7 @@ A tool that __automatically generates deploy ready GraphQL Server__ based on dat
 ## Why?
 The motivation for this tool is two-fold:
 1. Building API end points for simple database models is a chore. This tool will automate the whole process.
-2. If you have a data warehouse (DWH) which you want to expose to external systems, this tool will come in handy. 
+2. If you have a data warehouse (DWH) which you want to expose to external systems as a _Data API_, this tool will come in handy. 
 
 ## Salient Features
 - Supports all sensible search criteria on database columns based on field types
@@ -30,7 +30,9 @@ The motivation for this tool is two-fold:
         1. greater than, less than
         2. between
         3. equals, not equals        
-
+- Combination search on fields, which provides a powerful API to model complex queries
+- Ability to exclude specific columns from being part of the query
+- REST API GET endpoint to send metadata json as an input and receive GraphQL Server project as an output (as a base64 encoded string) 
 ### Immediate Road map
 - Provision for authentication and authorization
 - Provision for caching
