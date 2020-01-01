@@ -1,6 +1,7 @@
 from core.GraphQLColumn import GraphQLColumn
 from core.GraphQLForeignKey import GraphQLForeignKey
 from utils.string_util import to_camel_case
+from static.config import METADATA_TABLE
 
 
 class GraphQLTable:
@@ -37,8 +38,9 @@ class GraphQLTable:
         """
         public static factory method that returns an instance of GraphQLTable given a metadata JSON
         """
-        assert "table_name" in json_data
-        assert "columns" in json_data and isinstance(json_data["columns"], list)
+        assert METADATA_TABLE(json_data)
+        # assert "table_name" in json_data
+        # assert "columns" in json_data and isinstance(json_data["columns"], list)
 
         _graph_ql_columns = [GraphQLColumn(**col) for col in json_data["columns"]]
 

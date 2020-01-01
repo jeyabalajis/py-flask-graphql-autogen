@@ -1,6 +1,10 @@
+import pytest
+from fastjsonschema.exceptions import JsonSchemaException
+
 from core.GraphQLColumn import GraphQLColumn
-from core.GraphQLTable import GraphQLTable
 from core.GraphQLForeignKey import GraphQLForeignKey
+from core.GraphQLTable import GraphQLTable
+from static.config import METADATA_TABLE
 
 
 class TestGraphQLTable:
@@ -48,7 +52,8 @@ class TestGraphQLTable:
             "columns": [
                 {"field_type": "str", "field_name": "contract_ref_number"},
                 {"field_type": "str", "field_name": "inco_term"},
-            ]
+            ],
+            "primary_key_fields": ["contract_ref_number"]
         }
 
         _graph_ql_table = GraphQLTable.from_json(_table_json)
@@ -56,3 +61,8 @@ class TestGraphQLTable:
         assert len(_graph_ql_table.columns) == len(_table_json["columns"])
 
         print(_graph_ql_table.__dict__)
+
+    def test_metadata_json(self):
+        _table_json_invalid = {}
+        with pytest.raises(JsonSchemaException):
+            assert METADATA_TABLE(_table_json_invalid)

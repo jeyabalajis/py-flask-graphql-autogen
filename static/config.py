@@ -1,3 +1,5 @@
+import fastjsonschema
+
 TEMPLATE_FOLDER = "template"
 
 DB_MODELS_FOLDER = "database"
@@ -50,3 +52,55 @@ COLUMN_QUERY_TYPES_MAP = {
         {"q_type": "lt", "gql_type": "graphene.DateTime()"},
     ]
 }
+
+METADATA_TABLES = fastjsonschema.compile({"type": "array", "uniqueItems": True})
+
+METADATA_TABLE = fastjsonschema.compile(
+    {
+        "type": "object",
+        "required": ["table_name", "columns", "primary_key_fields"],
+        "properties": {
+            "table_name": {"type": "string"},
+            "columns": {
+                "type": "array",
+                "uniqueItems": True,
+                "items": [
+                    {
+                        "type": "object",
+                        "required": ["field_name", "field_type"],
+                        "properties": {
+                            "field_name": {"type": "string"},
+                            "field_type": {"type": "string"},
+                            "exclude_from_search": {"type": "boolean"}
+                        }
+                    }
+                ],
+                "minItems": 1
+            },
+            "primary_key_fields": {
+                "type": "array",
+                "uniqueItems": True,
+                "items": [
+                    {"type": "string"}
+                ],
+                "minItems": 1
+            },
+            "foreign_key": {
+                "type": "object",
+                "required": ["parent_table_name", "self_columns", "parent_columns"],
+                "properties": {
+                    "parent_table_name": {"type": "string"},
+                    "self_columns": {
+                        "type": "array",
+                        "items": [{"type": "string"}], "minItems": 1, "uniqueItems": True
+                    },
+                    "parent_columns":
+                        {
+                            "type": "array",
+                            "items": [{"type": "string"}], "minItems": 1, "uniqueItems": True
+                        },
+                }
+            }
+        }
+    }
+)
