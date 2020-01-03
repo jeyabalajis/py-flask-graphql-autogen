@@ -1,8 +1,13 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from services.graphql_service import generate_server_service
 
 app = Flask(__name__)
 app.debug = True
+
+
+@app.route("/", methods=['GET'])
+def say_hello():
+    return jsonify(status=200, detail="Hello!")
 
 
 @app.route("/generate_server/<app_name>", methods=['POST'])
