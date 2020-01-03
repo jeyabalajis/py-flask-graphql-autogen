@@ -15,6 +15,7 @@ class GraphQLServer:
         self.app_name = app_name
         self.base_path = base_path
         self.root_folder_name = root_folder_name
+        assert isinstance(table_meta_data, list) and len(table_meta_data) > 0
         self.table_meta_data = table_meta_data
 
     def generate_graphql_server(self):

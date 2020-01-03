@@ -8,12 +8,15 @@ def generate_server_service(*, app_name, tables_metadata: dict):
     base_path = tempfile.mkdtemp()
     root_folder_name = app_name
 
-    graph_ql_server = GraphQLServer(
-        app_name=app_name,
-        base_path=base_path,
-        root_folder_name=root_folder_name,
-        table_meta_data=tables_metadata
-    )
+    try:
+        graph_ql_server = GraphQLServer(
+            app_name=app_name,
+            base_path=base_path,
+            root_folder_name=root_folder_name,
+            table_meta_data=tables_metadata
+        )
+    except AssertionError:
+        return response_util.get_response(status=400, title="Error", detail="Invalid Metadata Input")
 
     graph_ql_server.generate_graphql_server()
 
