@@ -51,3 +51,14 @@ def create_dir(base_path: str, root_folder_name: str):
         print("Directory ", dir_name, " Created ")
     else:
         print("Directory ", dir_name, " already exists")
+
+
+def make_archive(source, destination):
+    base = os.path.basename(destination)
+    name = base.split('.')[0]
+    archive_format = base.split('.')[1]
+    archive_from = os.path.dirname(source)
+    archive_to = os.path.basename(source.strip(os.sep))
+    print(source, destination, archive_from, archive_to)
+    shutil.make_archive(name, archive_format, archive_from, archive_to)
+    shutil.move('%s.%s' % (name, archive_format), destination)

@@ -16,3 +16,9 @@ class TestFileUtil:
         root_folder_name = "schema-demo"
         file_util.create_dir(base_path, root_folder_name)
         assert path.exists(base_path + "/" + root_folder_name)
+
+    def test_create_archive(self):
+        source = "E:/GraphQLPOC"
+        destination = "E:/GraphQLPOC/auto-graphql-demo.zip"
+        file_util.make_archive(source, destination)
+        assert path.exists(destination)
