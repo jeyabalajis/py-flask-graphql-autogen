@@ -2,3 +2,5 @@
 .env
 .pytest_cache
 out
+.chalice/deployments/
+.chalice/venv/
