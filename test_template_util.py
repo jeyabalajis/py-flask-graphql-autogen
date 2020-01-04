@@ -38,13 +38,13 @@ class TestTemplateUtil:
             "self_columns": ["department_id"],
             "parent_columns": ["id"]
         }
-        _foreign_key = GraphQLForeignKey(**_foreign_key_data)
+        _foreign_key = [GraphQLForeignKey(**_foreign_key_data)]
 
         _table_data = {
             "table_name": "employee",
             "columns": _graph_ql_columns,
             "primary_key_fields": ["id"],
-            "foreign_key": _foreign_key
+            "foreign_key_fields": _foreign_key
         }
         _graph_ql_table = GraphQLTable(**_table_data)
 

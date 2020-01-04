@@ -31,6 +31,8 @@ def copy_file(file_path: str, file_name: str, out_path: str, out_file_name: str 
     os.makedirs(os.path.dirname(get_fq_path(out_path, out_file_name)), exist_ok=True)
     source = get_fq_path(file_path, file_name)
     destination = get_fq_path(out_path, out_file_name)
+    print("source: {}".format(source))
+    print("destination: {}".format(destination))
     shutil.copy(source, destination)
 
 
