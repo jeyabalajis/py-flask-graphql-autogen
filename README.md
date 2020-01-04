@@ -75,21 +75,26 @@ The motivation for this tool is two-fold:
                 ],
                 "minItems": 1
             },
-            "foreign_key": {
-                "type": "object",
-                "required": ["parent_table_name", "self_columns", "parent_columns"],
-                "properties": {
-                    "parent_table_name": {"type": "string"},
-                    "self_columns": {
-                        "type": "array",
-                        "items": [{"type": "string"}], "minItems": 1, "uniqueItems": true
-                    },
-                    "parent_columns":
-                        {
-                            "type": "array",
-                            "items": [{"type": "string"}], "minItems": 1, "uniqueItems": true
+            "foreign_key_fields": {
+                "type": "array",
+                "items": [
+                    {
+                        "type": "object",
+                        "required": ["parent_table_name", "self_columns", "parent_columns"],
+                        "properties": {
+                            "parent_table_name": {"type": "string"},
+                            "self_columns": {
+                                "type": "array",
+                                "items": [{"type": "string"}], "minItems": 1, "uniqueItems": true
+                            },
+                            "parent_columns":
+                                {
+                                    "type": "array",
+                                    "items": [{"type": "string"}], "minItems": 1, "uniqueItems": true
+                                }
                         }
-                }
+                    }
+                ]
             }
         }
     }
