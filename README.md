@@ -19,6 +19,31 @@ The motivation for this tool is two-fold:
 - The tool uses jinja2 template to inject table metadata json onto the template files under the template folder and generate target .py code files
 - The tool uses [black](https://black.readthedocs.io/en/stable/) to format the code files generated    
 
+## Releases
+
+### v1.0
+- Query resolvers that enables a combination __and__ search on  a multitude of fields, which provides a powerful API to model complex queries
+- The query fields are automatically created based on field types
+    - __String__:
+        1. ilike search (i.e. case insensitive like search)
+        2. starts with, ends with search
+        3. in list search
+        4. equals, not equals search
+    - __Numeric__:
+        1. greater than, less than
+        2. between
+        3. equals, not equals
+    - __Date__:
+        1. greater than, less than
+        2. between
+        3. equals, not equals        
+- Ability to exclude specific columns from being part of the query
+- REST API GET endpoint to send metadata json as an input and receive GraphQL Server project as an output (as a base64 encoded string) 
+
+### Immediate Road map
+- Provision for authentication and authorization
+- Provision for caching
+
 ## metadata json schema
 ```json
 {
@@ -69,28 +94,3 @@ The motivation for this tool is two-fold:
         }
     }
 ```
-
-## Releases
-
-### v1.0
-- Query resolvers that enables a combination __and__ search on  a multitude of fields, which provides a powerful API to model complex queries
-- The query fields are automatically created based on field types
-    - __String__:
-        1. ilike search (i.e. case insensitive like search)
-        2. starts with, ends with search
-        3. in list search
-        4. equals, not equals search
-    - __Numeric__:
-        1. greater than, less than
-        2. between
-        3. equals, not equals
-    - __Date__:
-        1. greater than, less than
-        2. between
-        3. equals, not equals        
-- Ability to exclude specific columns from being part of the query
-- REST API GET endpoint to send metadata json as an input and receive GraphQL Server project as an output (as a base64 encoded string) 
-
-### Immediate Road map
-- Provision for authentication and authorization
-- Provision for caching
