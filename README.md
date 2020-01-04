@@ -13,10 +13,68 @@ The motivation for this tool is two-fold:
 - Ability to plug in database connection parameters without disturbing auto-generated code 
 - Uses [jinja2](https://jinja.palletsprojects.com/en/2.10.x/) template engine for [PEP8](https://www.python.org/dev/peps/pep-0008/) compliant code generation.
 
+## Solution Approach
+- The [template folder](./template) contains a representation of the target GraphQL API server
+- The tool takes in table metadata json (for one or many tables) and app name as inputs
+- The tool uses jinja2 template to inject table metadata json onto the template files under the template folder and generate target .py code files
+- The tool uses [black](https://black.readthedocs.io/en/stable/) to format the code files generated    
+
+## metadata json schema
+```json
+{
+        "type": "object",
+        "required": ["table_name", "columns", "primary_key_fields"],
+        "properties": {
+            "table_name": {"type": "string"},
+            "columns": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": [
+                    {
+                        "type": "object",
+                        "required": ["field_name", "field_type"],
+                        "properties": {
+                            "field_name": {"type": "string"},
+                            "field_type": {"type": "string"},
+                            "exclude_from_search": {"type": "boolean"}
+                        }
+                    }
+                ],
+                "minItems": 1
+            },
+            "primary_key_fields": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": [
+                    {"type": "string"}
+                ],
+                "minItems": 1
+            },
+            "foreign_key": {
+                "type": "object",
+                "required": ["parent_table_name", "self_columns", "parent_columns"],
+                "properties": {
+                    "parent_table_name": {"type": "string"},
+                    "self_columns": {
+                        "type": "array",
+                        "items": [{"type": "string"}], "minItems": 1, "uniqueItems": true
+                    },
+                    "parent_columns":
+                        {
+                            "type": "array",
+                            "items": [{"type": "string"}], "minItems": 1, "uniqueItems": true
+                        }
+                }
+            }
+        }
+    }
+```
+
 ## Releases
 
 ### v1.0
-- Query resolvers with sensible search criteria for fields based on field types
+- Query resolvers that enables a combination __and__ search on  a multitude of fields, which provides a powerful API to model complex queries
+- The query fields are automatically created based on field types
     - __String__:
         1. ilike search (i.e. case insensitive like search)
         2. starts with, ends with search
@@ -30,9 +88,9 @@ The motivation for this tool is two-fold:
         1. greater than, less than
         2. between
         3. equals, not equals        
-- Combination search on fields, which provides a powerful API to model complex queries
 - Ability to exclude specific columns from being part of the query
 - REST API GET endpoint to send metadata json as an input and receive GraphQL Server project as an output (as a base64 encoded string) 
+
 ### Immediate Road map
 - Provision for authentication and authorization
 - Provision for caching
