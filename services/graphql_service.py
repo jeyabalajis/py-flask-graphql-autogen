@@ -2,6 +2,7 @@ import tempfile
 from core.GraphQLServer import GraphQLServer
 from utils import file_util, response_util
 import base64
+import os
 
 
 def generate_server_service(*, app_name, tables_metadata: dict):
@@ -21,6 +22,7 @@ def generate_server_service(*, app_name, tables_metadata: dict):
     graph_ql_server.generate_graphql_server()
 
     destination = base_path + "/" + app_name + ".zip"
+    os.chdir(base_path)
     file_util.make_archive(base_path, destination)
 
     with open(destination, "rb") as file_in:
