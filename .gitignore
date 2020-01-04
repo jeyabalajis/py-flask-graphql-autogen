@@ -4,3 +4,4 @@
 out
 .chalice/deployments/
 .chalice/venv/
+.coverage

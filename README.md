@@ -16,6 +16,8 @@ The motivation for this tool is two-fold:
 
 [![CircleCI](https://circleci.com/gh/jeyabalajis/py-flask-graphql-autogen.svg?style=svg)](https://circleci.com/gh/jeyabalajis/py-flask-graphql-autogen)
 
+![](coverage.svg)
+
 ## Solution Approach
 - The [template folder](./template) contains a representation of the target GraphQL API server
 - The tool takes in table metadata json (for one or many tables) and app name as inputs
