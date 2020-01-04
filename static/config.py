@@ -10,7 +10,7 @@ FILE_TYPES_MAP = {".tl": ".py"}
 
 BLIND_COPY_FILES = [
     {"source_path": "template/database", "source_file": "__init__.py", "target": "{}/database"},
-    {"source_path": "template/schema", "source_file": "__init__.py", "target":"{}/schema"},
+    {"source_path": "template/schema", "source_file": "__init__.py", "target": "{}/schema"},
     {"source_path": "template", "source_file": "requirements.txt", "target": "{}"}
 ]
 
@@ -24,7 +24,6 @@ DB_FIELD_TYPE_MAP = {
     "date": "Date",
     "datetime": "DateTime"
 }
-
 
 COLUMN_QUERY_TYPES_MAP = {
     "str": [
@@ -85,21 +84,26 @@ METADATA_TABLE = fastjsonschema.compile(
                 ],
                 "minItems": 1
             },
-            "foreign_key": {
-                "type": "object",
-                "required": ["parent_table_name", "self_columns", "parent_columns"],
-                "properties": {
-                    "parent_table_name": {"type": "string"},
-                    "self_columns": {
-                        "type": "array",
-                        "items": [{"type": "string"}], "minItems": 1, "uniqueItems": True
-                    },
-                    "parent_columns":
-                        {
-                            "type": "array",
-                            "items": [{"type": "string"}], "minItems": 1, "uniqueItems": True
-                        },
-                }
+            "foreign_key_fields": {
+                "type": "array",
+                "items": [
+                    {
+                        "type": "object",
+                        "required": ["parent_table_name", "self_columns", "parent_columns"],
+                        "properties": {
+                            "parent_table_name": {"type": "string"},
+                            "self_columns": {
+                                "type": "array",
+                                "items": [{"type": "string"}], "minItems": 1, "uniqueItems": True
+                            },
+                            "parent_columns":
+                                {
+                                    "type": "array",
+                                    "items": [{"type": "string"}], "minItems": 1, "uniqueItems": True
+                                },
+                        }
+                    }
+                ]
             }
         }
     }

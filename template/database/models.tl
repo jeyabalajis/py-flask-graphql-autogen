@@ -26,11 +26,13 @@ class {{table.db_model_name}}(Base):
     {% endfor %}
 
     {%- if (table.foreignKeyDicts is not none and table.foreignKeyDicts is iterable) %}
-    {{table.foreignKeyDicts.parent_db_model_name.lower()}} = relationship(
-        {{table.foreignKeyDicts.parent_db_model_name}},
+    {% for fk_relationship in table.foreignKeyDicts %}
+    {{fk_relationship.parent_db_model_name.lower()}} = relationship(
+        {{fk_relationship.parent_db_model_name}},
         backref=backref('{{table.db_model_name.lower()}}',
                         uselist=True,
                         cascade='delete,all'))
+    {% endfor %}
     {%- endif %}
 
     {% if (table.primary_key_fields is not none and table.primary_key_fields is iterable)%}
@@ -40,12 +42,14 @@ class {{table.db_model_name}}(Base):
             '{{field}}' {%- if not loop.last %},{%endif -%}
         {% endfor %}),
         {%- if (table.foreignKeyDicts is not none and table.foreignKeyDicts is iterable) %}
+        {% for fk_relationship in table.foreignKeyDicts %}
         ForeignKeyConstraint(
-            ({%- for col in table.foreignKeyDicts.self_columns -%}{{col}},{% endfor %}),
-            [{%- for col in table.foreignKeyDicts.parent_columns -%}
-            {{table.foreignKeyDicts.parent_db_model_name}}.{{col}}
+            ({%- for col in fk_relationship.self_columns -%}{{col}},{% endfor %}),
+            [{%- for col in fk_relationship.parent_columns -%}
+            {{fk_relationship.parent_db_model_name}}.{{col}}
             {%- if not loop.last %},{%endif -%} {% endfor %}]
         ),
+        {% endfor %}
         {%- endif %}
         {},
     )
