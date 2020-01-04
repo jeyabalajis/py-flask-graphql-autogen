@@ -13,6 +13,8 @@ The motivation for this tool is two-fold:
 - Ability to plug in database connection parameters without disturbing auto-generated code 
 - Uses [jinja2](https://jinja.palletsprojects.com/en/2.10.x/) template engine for [PEP8](https://www.python.org/dev/peps/pep-0008/) compliant code generation.
 
+__Build Status__: [![CircleCI](https://circleci.com/gh/jeyabalajis/py-flask-graphql-autogen.svg?style=svg)](https://circleci.com/gh/jeyabalajis/py-flask-graphql-autogen)
+
 ## Solution Approach
 - The [template folder](./template) contains a representation of the target GraphQL API server
 - The tool takes in table metadata json (for one or many tables) and app name as inputs
