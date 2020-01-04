@@ -39,9 +39,9 @@ class TestGraphQLTable:
             "self_columns": ["department_id"],
             "parent_columns": ["id"]
         }
-        _foreign_key = GraphQLForeignKey(**_foreign_key_data)
+        _foreign_key = [GraphQLForeignKey(**_foreign_key_data)]
 
-        _table_data = {"table_name": "contract_header", "columns": _graph_ql_columns, "foreign_key": _foreign_key}
+        _table_data = {"table_name": "contract_header", "columns": _graph_ql_columns, "foreign_key_fields": _foreign_key}
         _graph_ql_table = GraphQLTable(**_table_data)
 
         assert _graph_ql_table.foreignKeyDicts is not None

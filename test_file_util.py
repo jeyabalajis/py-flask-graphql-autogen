@@ -5,7 +5,7 @@ from os import path
 class TestFileUtil:
     def test_copy_file(self):
         file_util.copy_file("template/database", "__init__.py", "out/database")
-        assert path.exists("out/database" + "/" + "models.py")
+        assert path.exists("out/database" + "/" + "__init__.py")
 
     def test_copy_dir_tree(self):
         file_util.copy_tree("template/db_utils", "out/db_utils")
