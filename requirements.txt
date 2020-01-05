@@ -10,11 +10,14 @@ cfn-flip==1.2.2
 chardet==3.0.4
 Click==7.0
 colorama==0.4.3
+coverage==5.0.1
+coverage-badge==1.0.1
 docutils==0.15.2
 durationpy==0.5
 enum-compat==0.0.3
 fastjsonschema==2.14.2
 Flask==1.1.1
+Flask-Cors==3.0.8
 future==0.16.0
 hjson==3.0.1
 idna==2.8
