@@ -25,10 +25,8 @@ class GraphQLServer:
         3. Generate app.py
         4. Copy other files
         """
-        tables = []
-        for _table_json in self.table_meta_data:
-            _graph_ql_table = GraphQLTable.from_json(_table_json)
-            tables.append(_graph_ql_table.__dict__)
+        # use each table json to create a GraphQLTable instance and store its members as a JSON through __dict__
+        tables = [GraphQLTable.from_json(_table_json).__dict__ for _table_json in self.table_meta_data]
 
         data = {
             "db_models_folder": DB_MODELS_FOLDER,  # required to handle the imports in other files
