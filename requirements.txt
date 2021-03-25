@@ -39,7 +39,7 @@ pytest==5.3.2
 pytest-testdox==1.2.1
 python-dateutil==2.6.1
 python-slugify==1.2.4
-PyYAML==5.2
+PyYAML==5.4
 regex==2019.12.20
 requests==2.22.0
 s3transfer==0.2.1
