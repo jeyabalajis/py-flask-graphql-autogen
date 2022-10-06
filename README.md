@@ -104,3 +104,37 @@ The motivation for this tool is two-fold:
         }
     }
 ```
+
+## Sample Table specification
+
+```json
+{
+    "table_name": "contract_header",
+    "columns": [
+        {"field_name": "contract_id", "field_type": "int"},
+        {"field_name": "contract_ref_no", "field_type": "str"},
+        {"field_name": "contract_type", "field_type": "str"},
+        {"field_name": "inco_term_id", "field_type": "str"},
+        {"field_name": "commodity_id", "field_type": "int"},
+        {"field_name": "partner_id", "field_type": "int"}
+    ],
+    "primary_key_fields": ["contract_id"],
+    "foreign_key_fields": [
+        {
+            "parent_table_name": "business_partner",
+            "self_columns": ["partner_id"],
+            "parent_columns": ["partner_id"]
+        },
+        {
+            "parent_table_name": "commodity",
+            "self_columns": ["commodity_id"],
+            "parent_columns": ["commodity_id"]
+        },
+        {
+            "parent_table_name": "inco_term",
+            "self_columns": ["inco_term_id"],
+            "parent_columns": ["inco_term_id"]
+        }
+    ]
+    }
+```
