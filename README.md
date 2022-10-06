@@ -13,7 +13,7 @@ The motivation for this tool is two-fold:
 - Ability to plug in database connection parameters without disturbing auto-generated code 
 - Uses [jinja2](https://jinja.palletsprojects.com/en/2.10.x/) template engine for [PEP8](https://www.python.org/dev/peps/pep-0008/) compliant code generation.
 
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/jeyabalajis/py-flask-graphql-autogen/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/jeyabalajis/py-flask-graphql-autogen/tree/master)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/jeyabalajis/py-flask-graphql-autogen/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/jeyabalajis/py-flask-graphql-autogen/tree/master)
 ![](coverage.svg)
 [![CodeFactor](https://www.codefactor.io/repository/github/jeyabalajis/py-flask-graphql-autogen/badge/master)](https://www.codefactor.io/repository/github/jeyabalajis/py-flask-graphql-autogen/overview/master)
 
