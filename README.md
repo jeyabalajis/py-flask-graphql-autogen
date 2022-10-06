@@ -14,7 +14,6 @@ The motivation for this tool is two-fold:
 - Uses [jinja2](https://jinja.palletsprojects.com/en/2.10.x/) template engine for [PEP8](https://www.python.org/dev/peps/pep-0008/) compliant code generation.
 
 
-[![CircleCI](https://circleci.com/gh/jeyabalajis/py-flask-graphql-autogen.svg?style=svg)](https://circleci.com/gh/jeyabalajis/py-flask-graphql-autogen)
 ![](coverage.svg)
 [![CodeFactor](https://www.codefactor.io/repository/github/jeyabalajis/py-flask-graphql-autogen/badge/master)](https://www.codefactor.io/repository/github/jeyabalajis/py-flask-graphql-autogen/overview/master)
 
