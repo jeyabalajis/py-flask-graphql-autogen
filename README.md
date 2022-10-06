@@ -15,8 +15,8 @@ The motivation for this tool is two-fold:
 
 
 [![CircleCI](https://circleci.com/gh/jeyabalajis/py-flask-graphql-autogen.svg?style=svg)](https://circleci.com/gh/jeyabalajis/py-flask-graphql-autogen)
-
 ![](coverage.svg)
+[![CodeFactor](https://www.codefactor.io/repository/github/jeyabalajis/py-flask-graphql-autogen/badge/master)](https://www.codefactor.io/repository/github/jeyabalajis/py-flask-graphql-autogen/overview/master)
 
 ## Solution Approach
 - The [template folder](./template) contains a representation of the target GraphQL API server
