@@ -16,4 +16,4 @@ Rx==1.6.1
 singledispatch==3.4.0.3
 six==1.13.0
 SQLAlchemy==1.3.12
-Werkzeug==0.16.0
+Werkzeug==2.2.3
